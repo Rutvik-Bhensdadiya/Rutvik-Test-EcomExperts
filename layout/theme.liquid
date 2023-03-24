@@ -293,5 +293,23 @@
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+          fetch('/cart.js')
+          .then(response => response.json())
+          .then(cart => {
+            let required_product_is_here = false;
+            let free_product_is_here = false;
+            for(let j-0; j<cart.items.length; j++){
+              if(cart.items[j].product_id === 8228426514747 && cart.items[j].variant_id === 44770299117883){required_product_is_here = true;}
+              if(cart.items[j].product_id === 8228426449211){free_product_is_here = true;}
+            }
+          })
+          if(required_product_is_here && !free_product_is_here){console.log('PLease add Free product');}
+          if(!required_product_is_here && free_product_is_here){console.log('Please remove Free Product');}
+        });
+    </script>
+
   </body>
 </html>
