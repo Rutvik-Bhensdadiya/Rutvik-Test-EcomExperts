@@ -305,10 +305,10 @@
               if(cart.items[j].product_id === 8228426514747 && cart.items[j].variant_id === 44770299117883){required_product_is_here = true;}
               if(cart.items[j].product_id === 8228426449211){free_product_is_here = true;}
             }
+            if(required_product_is_here && !free_product_is_here){console.log('PLease add Free product');}
+            if(!required_product_is_here && free_product_is_here){console.log('Please remove Free Product');}
           })
-          if(required_product_is_here && !free_product_is_here){console.log('PLease add Free product');}
-          if(!required_product_is_here && free_product_is_here){console.log('Please remove Free Product');}
-        });
+         });
     </script>
 
   </body>
