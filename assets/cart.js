@@ -85,7 +85,7 @@ class CartItems extends HTMLElement {
 
   updateQuantity(line, quantity, name) {
     this.enableLoading(line);
-    alert('auto');
+    
     const body = JSON.stringify({
       line,
       quantity,
@@ -149,6 +149,53 @@ class CartItems extends HTMLElement {
       .finally(() => {
         this.disableLoading(line);
       });
+
+      setTimeout(() => {
+        fetch('/cart.js')
+        .then(response => response.json())
+        .then(cart => {
+          let required_product_is_here = false;
+          let free_product_is_here = false;
+          for(let j=0; j<cart.items.length; j++){
+            if(cart.items[j].product_id === 8228426514747 && cart.items[j].variant_id === 44770299117883){required_product_is_here = true;}
+            if(cart.items[j].product_id === 8228426449211){free_product_is_here = true;}
+          }
+          if(required_product_is_here && !free_product_is_here){
+            console.log('Please add Free product');
+            const data = {
+              "id": 44757107114299,
+              "quantity": 1
+            }  
+            fetch('/cart/add.js',{
+              method: 'POST',
+              body: JSON.stringify(data),
+              headers: {
+                'Content-Type':'application/json'
+              }
+            })
+            .then(response => response.json())
+            .then(cart => {
+              console.log('product is added');
+            })
+            .catch(error => console.error(error));
+          }
+          if(!required_product_is_here && free_product_is_here){
+            console.log('Please remove Free Product');
+            fetch('/cart/change.js',{
+              method: 'POST',
+              body: 'quantity=0&id=44757107114299',
+              headers: {
+                'Content-Type':'application/x-www-form-urlencoded'
+              }
+            })
+            .then(response => response.json())
+            .then(cart => {
+              console.log('product is removed');
+            })
+            .catch(error => console.error(error));
+          }
+        })   
+      }, 1000);
   }
 
   updateLiveRegions(line, message) {
