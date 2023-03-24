@@ -294,6 +294,8 @@
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
+    // free product check and add or remove script //
+
     <script>
         document.addEventListener('DOMContentLoaded',function(){
           fetch('/cart.js')

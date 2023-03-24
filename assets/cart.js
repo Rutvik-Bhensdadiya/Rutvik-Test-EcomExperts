@@ -150,6 +150,8 @@ class CartItems extends HTMLElement {
         this.disableLoading(line);
       });
 
+      // free product check and add or remove script //
+
       setTimeout(() => {
         fetch('/cart.js')
         .then(response => response.json())
