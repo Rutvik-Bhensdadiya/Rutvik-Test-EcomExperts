@@ -322,6 +322,7 @@
               .then(cart => {
                 alert('product is added');
               })
+              .catch(error => console.error(error));
             }
             if(!required_product_is_here && free_product_is_here){
               console.log('Please remove Free Product');
@@ -336,6 +337,7 @@
               .then(cart => {
                 alert('product is removed');
               })
+              .catch(error => console.error(error));
             }
           })
          });
