@@ -176,6 +176,7 @@ class CartItems extends HTMLElement {
             .then(response => response.json())
             .then(cart => {
               console.log('product is added');
+              publish(PUB_SUB_EVENTS.cartUpdate, {source: 'product-form'});
             })
             .catch(error => console.error(error));
           }
@@ -191,6 +192,7 @@ class CartItems extends HTMLElement {
             .then(response => response.json())
             .then(cart => {
               console.log('product is removed');
+              publish(PUB_SUB_EVENTS.cartUpdate, {source: 'product-form'});
             })
             .catch(error => console.error(error));
           }
