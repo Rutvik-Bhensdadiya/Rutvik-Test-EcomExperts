@@ -318,7 +318,7 @@
                   'Content-Type':'application.json'
                 }
               })
-              .then(response => response/json())
+              .then(response => response.json())
               .then(cart => {
                 alert('product is added');
               })
@@ -332,7 +332,7 @@
                   'Content-Type':'application.json'
                 }
               })
-              .then(response => response/json())
+              .then(response => response.json())
               .then(cart => {
                 alert('product is removed');
               })
