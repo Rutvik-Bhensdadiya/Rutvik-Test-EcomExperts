@@ -92,8 +92,8 @@
                     {%- if settings.show_vendor -%}
                       <p class="caption-with-letter-spacing">{{ item.product.vendor }}</p>
                     {%- endif -%}
-                    {{item.tags}}
-                    {% if item.tags contains 'hidden-on-store' %}
+
+                    {% if item.url == 'Soft Winter Jacket' %}
                       <span class="cart-item__name h4 break>{{ item.product.title | escape }}</span>
                     {% else %}
                       <a href="{{ item.url }}" class="cart-item__name h4 break">{{ item.product.title | escape }}</a>
