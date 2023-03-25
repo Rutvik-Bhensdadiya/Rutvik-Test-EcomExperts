@@ -4,10 +4,12 @@
     {% if product.handle == 'dark-winter-jacket' %}
        <script>window.location.href = '{{shop.url}}';</script>
     {% elsif product.handle == 'black-leather-bag' %}   
-       <script>         
+      <script> 
+        document.addEventListener('DOMContentLoaded',function(){         
           const buttonChangeOnLoad = document.querySelector('.button-change-on-select input[value="Unselected"]');
           buttonChangeOnLoad.click();
-        </script> 
+        });  
+      </script> 
     {% endif %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
