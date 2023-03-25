@@ -351,6 +351,7 @@
               .then(cart => {
                 console.log('product is added');
                 publish(PUB_SUB_EVENTS.cartUpdate, {source: 'product-form'});
+
               })
               .catch(error => console.error(error));
             }
@@ -367,6 +368,7 @@
               .then(cart => {
                 console.log('product is removed');
                 publish(PUB_SUB_EVENTS.cartUpdate, {source: 'product-form'});
+                window.location.reload();
               })
               .catch(error => console.error(error));
             }
