@@ -31,10 +31,10 @@
           "settings": {
           }
         },
-        "buy_buttons": {
+        "bd75c0ca-b8aa-45fc-b2a4-694c17f42d2a": {
           "type": "buy_buttons",
           "settings": {
-            "show_dynamic_checkout": true
+            "show_dynamic_checkout": false
           }
         },
         "description": {
@@ -55,7 +55,7 @@
         "price",
         "variant_picker",
         "quantity_selector",
-        "buy_buttons",
+        "bd75c0ca-b8aa-45fc-b2a4-694c17f42d2a",
         "description",
         "share"
       ],
