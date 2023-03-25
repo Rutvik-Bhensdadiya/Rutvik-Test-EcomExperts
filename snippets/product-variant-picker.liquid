@@ -45,7 +45,7 @@
       {%- for option in product.options_with_values -%}
         <fieldset class="js product-form__input">
           <legend class="form__label">{{ option.name }}</legend>
-          <div{% if option.name == 'Size' %} class="button-change-on-select" style="display:none"{% endif %}>
+          <div{% if option.name == 'Color' %} class="color-swatches-list"{% endif %}{% if option.name == 'Size' %} class="button-change-on-select" style="display:none"{% endif %}>
             {% render 'product-variant-options', product: product, option: option, block: block %}
           </div>
           {% if option.name == 'Size' %}
