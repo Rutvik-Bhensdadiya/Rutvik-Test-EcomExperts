@@ -60,6 +60,14 @@
               </select>
               {% render 'icon-caret' %}
             </div>
+            <script>
+              const selectButtonOnChange = document.querySelector('select.select-button-on-change');
+              selectButtonOnChange.addEventListener('change', function(){
+                  const optionValue = selectButtonOnChange.options[selectButtonOnChange.selectedIndex].value;
+                  const buttonChangeOnSelect = document.querySelector('.button-change-on-select input[value="' + optionValue + '"]');
+                  buttonChangeOnSelect.click();
+              });
+            </script>
           {% endif %}
         </fieldset>
       {%- endfor -%}
