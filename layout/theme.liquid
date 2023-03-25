@@ -8,6 +8,8 @@
         document.addEventListener('DOMContentLoaded',function(){         
           const buttonChangeOnLoad = document.querySelector('.button-change-on-select input[value="Unselected"]');
           buttonChangeOnLoad.click();
+          const selectElement = document.querySelector(".select-button-on-change");
+          selectElement.selectedIndex = 0;
         });  
       </script> 
     {% endif %}
