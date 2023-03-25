@@ -236,6 +236,26 @@
       document.documentElement.classList.add('shopify-design-mode');
     }
     </script>
+    <style>
+       .color-swatches-list label.color--swatch {
+          padding: 0rem !important;
+          height: 30px;
+          width: 30px;
+          border-radius: 100% !important;
+          text-indent: -100000px;
+          border: 0 !important;
+        }
+       .product-form__input .color-swatches-list input[type=radio]:checked+label{
+          border: 1px solid #000 !important;
+          padding: 2px !important;
+          background-clip: content-box;
+          width: 32px !important;
+          height: 32px !important;
+       }
+        .color-swatches-list{
+          display: flex;
+        } 
+    </style>
   </head>
 
   <body class="gradient{% if product.tags contains 'product-variant-image-filter' %} product-media-filter-enabled{% endif %}">
