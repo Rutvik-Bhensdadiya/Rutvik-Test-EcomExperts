@@ -153,52 +153,7 @@ class CartItems extends HTMLElement {
       // free product check and add or remove script //
 
       setTimeout(() => {
-        fetch('/cart.js')
-        .then(response => response.json())
-        .then(cart => {
-          let required_product_is_here = false;
-          let free_product_is_here = false;
-          for(let j=0; j<cart.items.length; j++){
-            if(cart.items[j].product_id === 8228426514747 && cart.items[j].variant_id === 44770299117883){required_product_is_here = true;}
-            if(cart.items[j].product_id === 8228426449211){free_product_is_here = true;}
-          }
-          if(required_product_is_here && !free_product_is_here){
-            console.log('Please add Free product');
-            const data = {
-              "id": 44757107114299,
-              "quantity": 1
-            }  
-            fetch('/cart/add.js',{
-              method: 'POST',
-              body: JSON.stringify(data),
-              headers: {
-                'Content-Type':'application/json'
-              }
-            })
-            .then(response => response.json())
-            .then(cart => {
-              console.log('product is added');
-              publish(PUB_SUB_EVENTS.cartUpdate, {source: 'product-form'});
-            })
-            .catch(error => console.error(error));
-          }
-          if(!required_product_is_here && free_product_is_here){
-            console.log('Please remove Free Product');
-            fetch('/cart/change.js',{
-              method: 'POST',
-              body: 'quantity=0&id=44757107114299',
-              headers: {
-                'Content-Type':'application/x-www-form-urlencoded'
-              }
-            })
-            .then(response => response.json())
-            .then(cart => {
-              console.log('product is removed');
-              publish(PUB_SUB_EVENTS.cartUpdate, {source: 'product-form'});
-            })
-            .catch(error => console.error(error));
-          }
-        })   
+        checkFreeItemInCart();
       }, 1000);
   }
 

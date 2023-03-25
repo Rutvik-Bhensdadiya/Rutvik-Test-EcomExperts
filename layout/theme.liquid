@@ -321,8 +321,11 @@
     // free product check and add or remove script //
 
     <script>
-        document.addEventListener('DOMContentLoaded',function(){
-          fetch('/cart.js')
+      document.addEventListener('DOMContentLoaded',function(){
+        checkFreeItemInCart();
+      });
+      function checkFreeItemInCart(){
+        fetch('/cart.js')
           .then(response => response.json())
           .then(cart => {
             let required_product_is_here = false;
@@ -368,7 +371,7 @@
               .catch(error => console.error(error));
             }
           })
-         });
+      }
     </script>
 
   </body>
