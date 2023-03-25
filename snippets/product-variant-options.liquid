@@ -72,7 +72,7 @@
         class="disabled"
       {% endif %}
     >
-    <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"{% if option.name == 'color' %} style="background-color:{{value}}"{% endif %}>
+    <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"{% if option.name == 'Color' %} style="background-color:{{value}}"{% endif %}>
       {{ value -}}
       <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
     </label>
