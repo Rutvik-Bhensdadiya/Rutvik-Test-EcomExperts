@@ -48,9 +48,15 @@
   {%- if picker_type == 'dropdown' -%}
     <option
       value="{{ value | escape }}"
-      {% if option.selected_value == value %}
-        selected="selected"
-      {% endif %}
+      {% if product.handle == 'black-leather-bag' %}
+        {% if value == 'Unselected' %}
+          selected="selected"
+        {% endif %}
+      {% else %}
+        {% if option.selected_value == value %}
+          selected="selected"
+        {% endif %}
+      {% endif %}  
     >
       {% if option_disabled -%}
         {{- 'products.product.value_unavailable' | t: option_value: value -}}
