@@ -45,7 +45,19 @@
       {%- for option in product.options_with_values -%}
         <fieldset class="js product-form__input">
           <legend class="form__label">{{ option.name }}</legend>
-          {% render 'product-variant-options', product: product, option: option, block: block %}
+          <div{% if option.name == 'Size' %}class="button-change-on-select" style="display:none"{% endif %}>
+            {% render 'product-variant-options', product: product, option: option, block: block %}
+          </div>
+          {% if option.name == 'size' %}
+            <select
+              id="Option-{{ section.id }}-{{ forloop.index0 }}"
+              class="select__select select-button-on-change"
+              name="options[{{ option.name | escape }}]"
+              form="{{ product_form_id }}"
+            >
+              {% render 'product-variant-options', product: product, option: option, block: block, picker_type: 'dropdown' %}
+            </select>
+          {% endif %}
         </fieldset>
       {%- endfor -%}
       <script type="application/json">
