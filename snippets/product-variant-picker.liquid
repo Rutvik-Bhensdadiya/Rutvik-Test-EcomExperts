@@ -49,14 +49,17 @@
             {% render 'product-variant-options', product: product, option: option, block: block %}
           </div>
           {% if option.name == 'Size' %}
-            <select
-              id="Option-{{ section.id }}-{{ forloop.index0 }}"
-              class="select__select select-button-on-change"
-              name="options[{{ option.name | escape }}]"
-              form="{{ product_form_id }}"
-            >
-              {% render 'product-variant-options', product: product, option: option, block: block, picker_type: 'dropdown' %}
-            </select>
+            <div class="select">
+              <select
+                id="Option-{{ section.id }}-{{ forloop.index0 }}"
+                class="select__select select-button-on-change"
+                name="options[{{ option.name | escape }}]"
+                form="{{ product_form_id }}"
+              >
+                {% render 'product-variant-options', product: product, option: option, block: block, picker_type: 'dropdown' %}
+              </select>
+              {% render 'icon-caret' %}
+            </div>
           {% endif %}
         </fieldset>
       {%- endfor -%}
