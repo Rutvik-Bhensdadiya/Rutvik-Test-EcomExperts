@@ -5,11 +5,11 @@
        <script>window.location.href = '{{shop.url}}';</script>
     {% elsif product.handle == 'black-leather-bag' %}   
       <script> 
-        document.addEventListener('DOMContentLoaded',function(){         
+        document.addEventListener('DOMContentLoaded',function(){ 
+          const selectElement = document.querySelector(".select-button-on-change");
+          selectElement.selectedIndex = 0;        
           const buttonChangeOnLoad = document.querySelector('.button-change-on-select input[value="Unselected"]');
           buttonChangeOnLoad.click();
-          const selectElement = document.querySelector(".select-button-on-change");
-          selectElement.selectedIndex = 0;
         });  
       </script> 
     {% endif %}
