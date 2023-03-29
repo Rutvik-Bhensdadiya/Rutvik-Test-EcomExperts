@@ -31,6 +31,52 @@
         {{ product.variants | json }}
       </script>
     </variant-radios>
+  {%- elsif block.settings.picker_type == 'custom' -%}  
+    <variant-radios
+      id="variant-radios-{{ section.id }}"
+      class="no-js-hidden"
+      data-section="{{ section.id }}"
+      data-url="{{ product.url }}"
+      {% if update_url == false %}
+        data-update-url="false"
+      {% endif %}
+      {{ block.shopify_attributes }}
+    >
+      {%- for option in product.options_with_values -%}
+        <fieldset class="js product-form__input">
+          <legend class="form__label">{{ option.name }}</legend>
+          <div{% if option.name == 'Color' %} class="color-swatches-list"{% endif %}{% if option.name == 'Size' %} class="button-change-on-select" style="display:none"{% endif %}>
+            {% render 'product-variant-options', product: product, option: option, block: block %}
+          </div>
+          {% if option.name == 'Size' %}
+            <div class="select">
+              <select
+                id="Option-{{ section.id }}-{{ forloop.index0 }}"
+                class="select__select select-button-on-change"
+                name="options[{{ option.name | escape }}]"
+                form="{{ product_form_id }}"
+              >
+                {% render 'product-variant-options', product: product, option: option, block: block, picker_type: 'dropdown' %}
+              </select>
+              {% render 'icon-caret' %}
+            </div>
+            <!-- Size option dropdown js starts -->
+            <script>
+              const selectButtonOnChange = document.querySelector('select.select-button-on-change');
+              selectButtonOnChange.addEventListener('change', function(){
+                  const optionValue = selectButtonOnChange.options[selectButtonOnChange.selectedIndex].value;
+                  const buttonChangeOnSelect = document.querySelector('.button-change-on-select input[value="' + optionValue + '"]');
+                  buttonChangeOnSelect.click();
+              });
+            </script>
+            <!-- Size option dropdown js Ends -->
+          {% endif %}
+        </fieldset>
+      {%- endfor -%}
+      <script type="application/json">
+        {{ product.variants | json }}
+      </script>
+    </variant-radios>
   {%- else -%}
     <variant-selects
       id="variant-selects-{{ section.id }}"

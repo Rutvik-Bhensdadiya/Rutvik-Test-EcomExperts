@@ -85,7 +85,7 @@ class CartItems extends HTMLElement {
 
   updateQuantity(line, quantity, name) {
     this.enableLoading(line);
-
+    
     const body = JSON.stringify({
       line,
       quantity,
@@ -149,6 +149,12 @@ class CartItems extends HTMLElement {
       .finally(() => {
         this.disableLoading(line);
       });
+
+      // free product check and add or remove script //
+
+      setTimeout(() => {
+        checkFreeItemInCart();
+      }, 1000);
   }
 
   updateLiveRegions(line, message) {

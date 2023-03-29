@@ -804,11 +804,11 @@ class VariantSelects extends HTMLElement {
     this.updatePickupAvailability();
     this.removeErrorMessage();
     this.updateVariantStatuses();
-
     if (!this.currentVariant) {
       this.toggleAddButton(true, '', true);
       this.setUnavailable();
     } else {
+      this.filterMedia();
       this.updateMedia();
       this.updateURL();
       this.updateVariantInput();
@@ -816,6 +816,25 @@ class VariantSelects extends HTMLElement {
       this.updateShareUrl();
     }
   }
+
+  // Variant Filter Script Starts //
+
+  filterMedia(){
+    if(document.body.classList.contains("product-media-filter-enabled")){
+      document.querySelectorAll('.product__media-item').forEach(function(item){
+        item.style.display = 'none';
+      });
+      document.querySelectorAll('.product__media-item.common').forEach(function(item){
+        item.style.display = 'block';
+      });
+      var selected_variant = this.currentVariant.featured_media.alt;
+      document.querySelectorAll('.'+ selected_variant).forEach(function(item){
+         item.style.display = 'block';
+      });
+    }
+  }
+
+  // Variant Filter Script Ends // 
 
   updateOptions() {
     this.options = Array.from(this.querySelectorAll('select'), (select) => select.value);
